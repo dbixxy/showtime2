@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/mystyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.countdownTimer.css" />
+    <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+     <script type="text/javascript" src="js/jquery.countdownTimer.min.js"></script>
+                <script type="text/javascript" src="js/cordova.js"></script>
+                <script type="text/javascript" src="js/index.js"></script>
+                
+                
+                
+    <title>CNS Showtime</title>
+    <style>
+        #txt  {
+                    font-size: 40px;
+                    color: #FFFFFF
+        }
+    </style>
+        
+<script>
+    var H,M,S,v;
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    v = 0;
+    var show = new Array(8);
+    var mintime = 0.0;
+    var lasttime = 0.0;
+      show[0] = new Array(3);
+      show[0][0] = "Jaguar Trail Zone: เดินชมสัตว์";
+      show[0][1] = "img/jtz.jpg";
+      show[0][2] = "11.00";
+      
+      show[1] = new Array(6)
+      show[1][0] = "Day Safari: นั่งรถชมสัตว์ยามบ่าย";
+      show[1][1] = "img/ds.jpg";
+      show[1][2] = "15.00";
+      show[1][3] = "15.30";
+      show[1][4] = "16.00";
+      show[1][5] = "16.30";
+      
+      show[2] = new Array(8)
+      show[2][0] = "Night Safari (TH): นั่งรถชมสัตว์กลางคืน รอบภาษาไทย";
+      show[2][1] = "img/ns.jpg";
+      show[2][2] = "18.30";
+      show[2][3] = "19.25";
+      show[2][4] = "20.30";
+      show[2][5] = "21.00";
+      show[2][6] = "21.30";
+      show[2][7] = "22.00";
+      
+      show[3] = new Array(8)
+      show[3][0] = "Night Safari (EN): นั่งรถชมสัตว์กลางคืน รอบภาษาอังกฤษ";
+      show[3][1] = "img/ns.jpg";
+      show[3][2] = "18.50";
+      show[3][3] = "19.30";
+      show[3][4] = "20.35";
+      show[3][5] = "21.05";
+      show[3][6] = "21.35";
+      show[3][7] = "22.00";
+      
+      show[4] = new Array(6)
+      show[4][0] = "Safari Dancing Show: การแสดงซาฟารี";
+      show[4][1] = "img/sds.jpg";
+      show[4][2] = "18.00";
+      show[4][3] = "19.00";
+      show[4][4] = "20.00";
+      show[4][5] = "21.00";
+
+      show[5] = new Array(5)
+      show[5][0] = "Night Predators Show: การแสดงนักล่าแห่งรัตติกาล";
+      show[5][1] = "img/np.jpg";
+      show[5][2] = "17.20";
+      show[5][3] = "18.50";
+      show[5][4] = "20.40";
+
+      show[6] = new Array(5)
+      show[6][0] = "Tiger Show: การแสดงเสือขาว";
+      show[6][1] = "img/ts.jpg";
+      show[6][2] = "18.00"; 
+      show[6][3] = "19.30"; 
+      show[6][4] = "20.30"; 
+      
+      show[7] = new Array(4)
+      show[7][0] = "Musical Fountain & Water Screen: น้ำพุดนตรี";
+      show[7][1] = "img/ft.jpg";
+      show[7][2] = "20.10";
+      show[7][3] = "21.10";
+      
+      
+function startTime() {
+    var today = new Date();
+    h = today.getHours();
+    m = today.getMinutes();
+    s = today.getSeconds();
+    var timenow, timetable;
+    mintime = 23.59;
+            
+            
+             for(var i = 0; i<show.length; i++){
+                 for(var j=2; j<show[i].length;j++){
+                     if(show[i][j]<mintime){
+                         timenow = parseFloat(h + "." + m);
+                         if(timenow<show[i][j])
+                            mintime = show[i][j];
+                        }
+                 }
+             }  
+             //alert("min: " + mintime + ", lasttime :" + lasttime)
+             if(mintime != lasttime){
+                 
+                 lasttime = mintime;
+                 drawTable();  
+             }
+             
+    var ttime = mintime.split(".");
+    
+    H = ttime[0] - h;
+    M = ttime[1] - m-1;
+    
+    if(M < 0){
+        M+=60;
+        H-=1;
+    }
+        
+    S = 59-s;
+    M = checkTime(M);
+    S = checkTime(S);
+    document.getElementById('txt').innerHTML = H + ":" + M + ":" + S;
+
+    
+             
+    var t = setTimeout(startTime, 500);
+    
+}
+    
+function drawTable(){
+            $("#showlist li").remove();
+            for(var i = 0; i<show.length; i++){
+                tmp = "<p align='left'><font size='3'>";
+                for(var j=2; j<show[i].length;j++){
+                    if(show[i][j]==lasttime){
+                        tmp += "<img src='img/bullet.gif'><font color='red'><blink>" + show[i][j] + "</blink></font> ";
+                    }else{
+                        tmp += show[i][j] + " ";
+                    }
+                }
+                tmp += "</font></p>";
+
+                $('<li>').append("<img src='" + show[i][1] + "'>" + 
+                                          "<p><font size='3'>" + show[i][0] + "</font></p>" +
+                                          tmp + " "
+                                            // "<p>" + show[i][2] + "." + checkTime(show[i][3]) + "</p>"
+                             ).appendTo('#showlist');
+                //$('#showlist').listview('refresh');
+
+             }
+            $('#showlist').listview('refresh');
+            $('#showlist').listview().listview('refresh');
+}
+
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+
+
+$(function(){
+        for(var i = 0; i<show.length; i++){
+                tmp = "<p>";
+                for(var j=2; j<show[i].length;j++){
+                    if(show[i][j]==mintime){
+                        tmp += "<img src='img/bullet.gif'><font color='red'><blink>" + show[i][j] + "</blink></font> ";
+                    }else{
+                        tmp += show[i][j] + " ";
+                    }
+                }
+                tmp += "</p>";
+
+                $('<li>').append("<img src='" + show[i][1] + "'>" + 
+                                          "<h2>" + show[i][0] + "</h2>" +
+                                          tmp + " "
+                                            // "<p>" + show[i][2] + "." + checkTime(show[i][3]) + "</p>"
+                             ).appendTo('#showlist');
+                $('#showlist').listview('refresh');
+
+             }
+            $('#showlist').listview('refresh');
+            $('#showlist').listview().listview('refresh');
+});
+
+</script>
+</head>
+
+<body onload="startTime()">
+    <div data-role="page" id="page1" style="background-color: #000000">
+        
+        <div data-role="header" style="background-color: #15ef38">
+            <h1 style="color: black; text-shadow: none;">CNS Showtime</h1>
+            <a href="about.html" class="ui-btn ui-btn-left ui-btn-icon-left ui-corner-all ui-icon-info" data-transition="slide" >About</a>
+        </div>
+      
+        <div role="main" class="ui-content">
+             <form name="form1" id="form1">
+                 <center>
+                     <table>
+                         <tr>
+                             <th><img src='img/bullet_big.gif' height='40'></th>
+                             <th><font size="50" color="#ffffff">Countdown</font></th>
+                             <th><img src='img/clock2.png' height='40'></th>
+                         </tr>
+                     </table>
+                     <div><h1></h1></div>
+                     <div id="txt"></div>
+                    <div id="countdowntimer"><span id="future_date"><span></div>
+                 </center>
+                 <br><br>
+                    <ul  data-role="listview"  data-filter-theme="a" data-divider-theme="b" id="showlist"> <!-- data-filter="true" -->
+                    </ul>
+            </form>
+        </div>
+        
+    </div>
+
+    
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
